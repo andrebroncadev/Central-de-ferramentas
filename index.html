@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0c2749">
+  <meta name="theme-color" content="#f6f5f1">
   <title>Central de Ferramentas</title>
   <style>
     :root{color-scheme:dark;--navy:#0c2749;--red:#dc1c2e;--ink:#f4f7fb;--muted:#b7c5d8;--panel:#142f50;--line:#2c4664}
@@ -81,7 +81,7 @@ html,body{background:var(--theme-bg);color:var(--theme-text)}
       <a class="tool" href="https://feedback-maker-bronca.vercel.app/" target="_blank" rel="noopener noreferrer">
         <div class="symbol" aria-hidden="true">▤</div><div class="copy"><strong>Feedback Maker</strong><span>Geração de feedbacks de imóveis</span></div><span class="arrow" aria-hidden="true">↗</span>
       </a>
-      <a class="tool" href="https://andrebroncadev.github.io/rent_tool/" target="_blank" rel="noopener noreferrer">
+      <a class="tool" href="https://contrato-generator-bronca.vercel.app/" target="_blank" rel="noopener noreferrer">
         <div class="symbol" aria-hidden="true">✎</div><div class="copy"><strong>Contrato Generator</strong><span>Geração de contratos de locação</span></div><span class="arrow" aria-hidden="true">↗</span>
       </a>
     </section>
@@ -109,6 +109,6 @@ html,body{background:var(--theme-bg);color:var(--theme-text)}
 })();
 </script>
 
-<script>(function(){const key='remax-unified-theme',root=document.documentElement;let saved='light';try{saved=localStorage.getItem(key)||'light'}catch(e){}function apply(theme){root.dataset.theme=theme;const b=document.getElementById('themeToggle');if(b){b.textContent=theme==='dark'?'☀ Modo claro':'☾ Modo escuro';b.setAttribute('aria-pressed',String(theme==='dark'));b.setAttribute('aria-label',theme==='dark'?'Ativar modo claro':'Ativar modo escuro')}const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=theme==='dark'?'#222326':'#f6f5f1'}const b=document.createElement('button');b.type='button';b.id='themeToggle';b.className='theme-toggle';b.textContent='☾ Modo escuro';b.setAttribute('aria-pressed','false');b.setAttribute('aria-label','Ativar modo escuro');b.title='Alternar entre modo claro e escuro';b.addEventListener('click',()=>{const n=root.dataset.theme==='dark'?'light':'dark';apply(n);try{localStorage.setItem(key,n)}catch(e){}});apply(saved);if(document.body)document.body.appendChild(b);else document.addEventListener('DOMContentLoaded',()=>document.body.appendChild(b),{once:true})})();</script>
+
 </body>
 </html>
