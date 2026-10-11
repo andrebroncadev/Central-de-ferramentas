@@ -1,114 +1,41 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f5f1">
-  <title>Central de Ferramentas</title>
-  <style>
-    :root{color-scheme:dark;--navy:#0c2749;--red:#dc1c2e;--ink:#f4f7fb;--muted:#b7c5d8;--panel:#142f50;--line:#2c4664}
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;background:linear-gradient(145deg,#07182d 0%,var(--navy) 65%,#102c4e 100%);color:var(--ink);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:flex;align-items:center;justify-content:center;padding:28px}
-    main{width:min(760px,100%)}
-    .eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#f26b77}
-    h1{font-size:clamp(2rem,7vw,3.3rem);line-height:1.08;margin:.6rem 0}
-    .intro{color:var(--muted);margin:0 0 28px}
-    .tools{display:grid;gap:14px}
-    a.tool{display:flex;align-items:center;gap:16px;padding:20px;background:rgba(20,47,80,.9);border:1px solid var(--line);border-radius:16px;color:inherit;text-decoration:none;transition:transform .15s,border-color .15s}
-    a.tool:hover,a.tool:focus-visible{transform:translateY(-2px);border-color:#f26b77;outline:none}
-    .symbol{width:46px;height:46px;flex:0 0 46px;border-radius:12px;display:grid;place-items:center;background:#203e61;font-size:1.35rem}
-    .copy{flex:1;min-width:0}.copy strong{display:block;font-size:1.08rem}.copy span{display:block;color:var(--muted);font-size:.92rem;margin-top:3px}
-    .arrow{color:#f26b77;font-size:1.35rem}
-    footer{margin-top:26px;color:#8fa4be;font-size:.82rem}
-    @media(min-width:640px){.tools{grid-template-columns:1fr 1fr}.tool:first-child{grid-column:1/-1}}
-  </style>
-  <style>
-/* Identidade visual unificada */
-:root{color-scheme:light;--theme-bg:#f6f5f1;--theme-surface:#fffefa;--theme-surface-2:#e9e8e5;--theme-surface-3:#d5d4d0;--theme-text:#28292d;--theme-muted:#6f7075;--theme-line:#d8d6d0;--theme-gold:#b49350;--theme-red:#b52332;--theme-navy:#17324f;--theme-green:#26734d}
-html[data-theme="dark"]{color-scheme:dark;--theme-bg:#222326;--theme-surface:#2d2f33;--theme-surface-2:#383a3f;--theme-surface-3:#484a4f;--theme-text:#f4f1e8;--theme-muted:#b8b5ad;--theme-line:#4b4c50;--theme-gold:#d2b46b;--theme-red:#d94a57;--theme-navy:#294b6d;--theme-green:#3b9a68}
-html,body{background:var(--theme-bg);color:var(--theme-text)}
-.theme-toggle{position:fixed;right:16px;bottom:16px;z-index:9999;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--theme-line);border-radius:999px;padding:9px 13px;background:var(--theme-surface);color:var(--theme-text);font:600 12px/1.2 system-ui,sans-serif;box-shadow:0 3px 14px #00000016;opacity:.82;cursor:pointer;transition:opacity .15s,transform .15s}
-.theme-toggle:hover,.theme-toggle:focus-visible{opacity:1;transform:translateY(-1px);outline:2px solid var(--theme-gold);outline-offset:2px}
-@media(max-width:600px){.theme-toggle{right:10px;bottom:10px;padding:8px 11px;font-size:11px}}
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f6f5f1">
+<title>Central de Ferramentas</title>
+<style>
+:root{color-scheme:light;--bg:#f6f5f1;--surface:#fffefa;--surface-2:#e9e8e5;--surface-3:#d5d4d0;--text:#28292d;--muted:#6f7075;--line:#d8d6d0;--gold:#b49350;--red:#b52332;--navy:#17324f;--green:#26734d}
+html[data-theme="dark"]{color-scheme:dark;--bg:#222326;--surface:#2d2f33;--surface-2:#383a3f;--surface-3:#484a4f;--text:#f4f1e8;--muted:#b8b5ad;--line:#4b4c50;--gold:#d2b46b;--red:#d94a57;--navy:#294b6d;--green:#3b9a68}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:28px}
+main{width:min(760px,100%)}
+.brand{font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-top:28px}
+h1{font-size:clamp(2rem,7vw,3.3rem);line-height:1.08;letter-spacing:-.04em;margin:.6rem 0}
+.intro{color:var(--muted);margin:0 0 28px}
+.list{display:grid;gap:14px}
+.tool{display:flex;align-items:center;gap:16px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:16px;color:var(--text);text-decoration:none;transition:transform .15s,border-color .15s,background .15s}
+.tool:hover,.tool:focus-visible{transform:translateY(-2px);border-color:var(--gold);background:var(--surface-2);outline:none}
+.symbol{width:46px;height:46px;flex:0 0 46px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--navy);font-size:1.35rem}
+.copy{flex:1;min-width:0}.copy strong{display:block;font-size:1.08rem}.copy span{display:block;color:var(--muted);font-size:.92rem;margin-top:3px}
+.arrow{color:var(--red);font-size:1.35rem}
+footer{margin-top:26px;color:var(--muted);font-size:.82rem}
+.theme-toggle{position:fixed;right:16px;bottom:16px;z-index:9999;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:var(--surface);color:var(--text);font:600 12px/1.2 system-ui,sans-serif;box-shadow:0 3px 14px #00000016;opacity:.88;cursor:pointer}
+.theme-toggle:hover,.theme-toggle:focus-visible{opacity:1;outline:2px solid var(--gold);outline-offset:2px}
+@media(min-width:640px){.list{grid-template-columns:1fr 1fr}.tool:first-child{grid-column:1/-1}}
+@media(max-width:600px){body{padding:22px 16px}.theme-toggle{right:10px;bottom:10px;padding:8px 11px;font-size:11px}}
 @media print{.theme-toggle{display:none!important}}
-
-/* Paleta unificada e suporte a modo escuro */
-:root{color-scheme:light;--navy:#17324f;--red:#b52332;--ink:#28292d;--muted:#6f7075;--panel:#fffefa;--line:#d8d6d0;--gold:#b49350;--surface2:#e9e8e5}
-html[data-theme="dark"]{color-scheme:dark;--navy:#294b6d;--red:#d94a57;--ink:#f4f1e8;--muted:#b8b5ad;--panel:#2d2f33;--line:#4b4c50;--gold:#d2b46b;--surface2:#383a3f}
-body{background:var(--theme-bg,#f6f5f1);color:var(--ink)}
-.brand-name,.intro{color:var(--muted)}
-.eyebrow,.arrow{color:var(--red)}
-.contract{background:var(--panel);border-color:var(--line);color:var(--ink)}
-a.contract:hover,a.contract:focus-visible{background:var(--surface2);border-color:var(--gold)}
-.icon{background:var(--surface2);color:var(--navy)}
-.contract small,.tooltip{color:var(--muted)}
-.contract.disabled{background:var(--surface2);color:var(--muted);border-color:var(--line)}
-footer{color:var(--muted)}
-html[data-theme="dark"] body{background:var(--theme-bg);color:var(--ink)}
-html[data-theme="dark"] .contract{background:var(--panel);color:var(--ink);border-color:var(--line)}
-html[data-theme="dark"] a.contract:hover,html[data-theme="dark"] a.contract:focus-visible{background:var(--surface2);border-color:var(--gold)}
-html[data-theme="dark"] .icon{background:#45474c;color:var(--ink)}
-html[data-theme="dark"] .contract.disabled{background:#34363a;color:#999a9d}
 </style>
-  <style>
-/* Identidade visual unificada */
-:root{color-scheme:light;--theme-bg:#f6f5f1;--theme-surface:#fffefa;--theme-surface-2:#e9e8e5;--theme-surface-3:#d5d4d0;--theme-text:#28292d;--theme-muted:#6f7075;--theme-line:#d8d6d0;--theme-gold:#b49350;--theme-red:#b52332;--theme-navy:#17324f;--theme-green:#26734d}
-html[data-theme="dark"]{color-scheme:dark;--theme-bg:#222326;--theme-surface:#2d2f33;--theme-surface-2:#383a3f;--theme-surface-3:#484a4f;--theme-text:#f4f1e8;--theme-muted:#b8b5ad;--theme-line:#4b4c50;--theme-gold:#d2b46b;--theme-red:#d94a57;--theme-navy:#294b6d;--theme-green:#3b9a68}
-html,body{background:var(--theme-bg);color:var(--theme-text)}
-.theme-toggle{position:fixed;right:16px;bottom:16px;z-index:9999;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--theme-line);border-radius:999px;padding:9px 13px;background:var(--theme-surface);color:var(--theme-text);font:600 12px/1.2 system-ui,sans-serif;box-shadow:0 3px 14px #00000016;opacity:.82;cursor:pointer;transition:opacity .15s,transform .15s}
-.theme-toggle:hover,.theme-toggle:focus-visible{opacity:1;transform:translateY(-1px);outline:2px solid var(--theme-gold);outline-offset:2px}
-@media(max-width:600px){.theme-toggle{right:10px;bottom:10px;padding:8px 11px;font-size:11px}}
-@media print{.theme-toggle{display:none!important}}
-
- .tool{background:var(--panel);border-color:var(--line);color:var(--ink)}
- .tool:hover,.tool:focus-visible{border-color:var(--gold);background:var(--surface2)}
- .symbol{background:var(--surface2);color:var(--navy)}
- .copy span,footer{color:var(--muted)}
- html[data-theme="dark"] .tool{background:var(--panel);border-color:var(--line);color:var(--ink)}
- html[data-theme="dark"] .tool:hover,html[data-theme="dark"] .tool:focus-visible{background:var(--surface2);border-color:var(--gold)}
- html[data-theme="dark"] .symbol{background:#45474c;color:var(--ink)}
- </style>
 </head>
-<body>
-  <main>
-    <div class="eyebrow">Área interna</div>
-    <h1>Central de Ferramentas</h1>
-    <p class="intro">Acesse rapidamente as ferramentas de trabalho.</p>
-    <section class="tools" aria-label="Ferramentas">
-      <a class="tool" href="https://bancoimob-bronca.vercel.app/" target="_blank" rel="noopener noreferrer">
-        <div class="symbol" aria-hidden="true">⌂</div><div class="copy"><strong>BancoImob</strong><span>Base e administração de imóveis</span></div><span class="arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="tool" href="https://feedback-maker-bronca.vercel.app/" target="_blank" rel="noopener noreferrer">
-        <div class="symbol" aria-hidden="true">▤</div><div class="copy"><strong>Feedback Maker</strong><span>Geração de feedbacks de imóveis</span></div><span class="arrow" aria-hidden="true">↗</span>
-      </a>
-      <a class="tool" href="https://contrato-generator-bronca.vercel.app/" target="_blank" rel="noopener noreferrer">
-        <div class="symbol" aria-hidden="true">✎</div><div class="copy"><strong>Contrato Generator</strong><span>Geração de contratos de locação</span></div><span class="arrow" aria-hidden="true">↗</span>
-      </a>
-    </section>
-    <footer>Ferramentas internas · RE/MAX Soul</footer>
-  </main>
-
-<script>
-(function(){
-  const key='remax-unified-theme';
-  const root=document.documentElement;
-  let saved='light';
-  try{saved=localStorage.getItem(key)||'light'}catch(e){}
-  function apply(theme){
-    root.dataset.theme=theme;
-    const button=document.getElementById('themeToggle');
-    if(button){button.textContent=theme==='dark'?'☀ Modo claro':'☾ Modo escuro';button.setAttribute('aria-pressed',String(theme==='dark'));button.setAttribute('aria-label',theme==='dark'?'Ativar modo claro':'Ativar modo escuro');}
-    const meta=document.querySelector('meta[name="theme-color"]');
-    if(meta)meta.content=theme==='dark'?'#222326':'#f6f5f1';
-  }
-  const button=document.createElement('button');
-  button.type='button';button.id='themeToggle';button.className='theme-toggle';button.textContent='☾ Modo escuro';button.setAttribute('aria-pressed','false');button.setAttribute('aria-label','Ativar modo escuro');button.title='Alternar entre modo claro e escuro';
-  button.addEventListener('click',function(){const next=root.dataset.theme==='dark'?'light':'dark';apply(next);try{localStorage.setItem(key,next)}catch(e){}});
-  apply(saved);
-  if(document.body)document.body.appendChild(button);else document.addEventListener('DOMContentLoaded',()=>document.body.appendChild(button),{once:true});
-})();
-</script>
-
-
-</body>
-</html>
+<body><main>
+<div class="brand">Área interna · EBIMOB</div>
+<div class="eyebrow">Central de Ferramentas</div>
+<h1>Suas ferramentas de trabalho.</h1>
+<p class="intro">Acesse rapidamente os sistemas internos.</p>
+<section class="list" aria-label="Ferramentas">
+<a class="tool" href="https://bancoimob-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="symbol" aria-hidden="true">⌂</span><span class="copy"><strong>BancoImob</strong><span>Base e administração de imóveis</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+<a class="tool" href="https://feedback-maker-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="symbol" aria-hidden="true">▤</span><span class="copy"><strong>Feedback Maker</strong><span>Geração de feedbacks de imóveis</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+<a class="tool" href="https://contrato-generator-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="symbol" aria-hidden="true">✎</span><span class="copy"><strong>Contrato Generator</strong><span>Geração de contratos</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+</section><footer>Ferramentas internas · RE/MAX Soul</footer></main>
+<script>(function(){const key='remax-unified-theme',root=document.documentElement;let theme='light';try{theme=localStorage.getItem(key)||'light'}catch(e){}const b=document.createElement('button');b.type='button';b.id='themeToggle';b.className='theme-toggle';b.title='Alternar entre modo claro e escuro';function apply(t){root.dataset.theme=t;b.textContent=t==='dark'?'☀ Modo claro':'☾ Modo escuro';b.setAttribute('aria-pressed',String(t==='dark'));b.setAttribute('aria-label',t==='dark'?'Ativar modo claro':'Ativar modo escuro');const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#222326':'#f6f5f1'}b.addEventListener('click',()=>{theme=root.dataset.theme==='dark'?'light':'dark';apply(theme);try{localStorage.setItem(key,theme)}catch(e){}});apply(theme);document.body.appendChild(b)})();</script>
+</body></html>
