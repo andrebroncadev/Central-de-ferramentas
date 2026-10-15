@@ -1,41 +1,102 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f6f5f1">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f6f5f1">
+<meta name="description" content="Central de ferramentas internas da EBIMOB e RE/MAX Soul.">
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <title>Central de Ferramentas</title>
 <style>
-:root{color-scheme:light;--bg:#f6f5f1;--surface:#fffefa;--surface-2:#e9e8e5;--surface-3:#d5d4d0;--text:#28292d;--muted:#6f7075;--line:#d8d6d0;--gold:#b49350;--red:#b52332;--navy:#17324f;--green:#26734d}
-html[data-theme="dark"]{color-scheme:dark;--bg:#222326;--surface:#2d2f33;--surface-2:#383a3f;--surface-3:#484a4f;--text:#f4f1e8;--muted:#b8b5ad;--line:#4b4c50;--gold:#d2b46b;--red:#d94a57;--navy:#294b6d;--green:#3b9a68}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;display:flex;align-items:center;justify-content:center;padding:28px}
-main{width:min(760px,100%)}
-.brand{font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
-.eyebrow{font-size:.78rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-top:28px}
-h1{font-size:clamp(2rem,7vw,3.3rem);line-height:1.08;letter-spacing:-.04em;margin:.6rem 0}
-.intro{color:var(--muted);margin:0 0 28px}
-.list{display:grid;gap:14px}
-.tool{display:flex;align-items:center;gap:16px;padding:20px;background:var(--surface);border:1px solid var(--line);border-radius:16px;color:var(--text);text-decoration:none;transition:transform .15s,border-color .15s,background .15s}
-.tool:hover,.tool:focus-visible{transform:translateY(-2px);border-color:var(--gold);background:var(--surface-2);outline:none}
-.symbol{width:46px;height:46px;flex:0 0 46px;border-radius:12px;display:grid;place-items:center;background:var(--surface-2);color:var(--navy);font-size:1.35rem}
-.copy{flex:1;min-width:0}.copy strong{display:block;font-size:1.08rem}.copy span{display:block;color:var(--muted);font-size:.92rem;margin-top:3px}
-.arrow{color:var(--red);font-size:1.35rem}
-footer{margin-top:26px;color:var(--muted);font-size:.82rem}
-.theme-toggle{position:fixed;right:16px;bottom:16px;z-index:9999;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line);border-radius:999px;padding:9px 13px;background:var(--surface);color:var(--text);font:600 12px/1.2 system-ui,sans-serif;box-shadow:0 3px 14px #00000016;opacity:.88;cursor:pointer}
-.theme-toggle:hover,.theme-toggle:focus-visible{opacity:1;outline:2px solid var(--gold);outline-offset:2px}
-@media(min-width:640px){.list{grid-template-columns:1fr 1fr}.tool:first-child{grid-column:1/-1}}
-@media(max-width:600px){body{padding:22px 16px}.theme-toggle{right:10px;bottom:10px;padding:8px 11px;font-size:11px}}
-@media print{.theme-toggle{display:none!important}}
+:root{color-scheme:light;--bg:#f6f5f1;--surface:#fffefa;--surface2:#e9e8e5;--text:#28292d;--muted:#6f7075;--line:#d8d6d0;--gold:#b49350;--red:#b52332;--navy:#17324f}
+html[data-theme=dark]{color-scheme:dark;--bg:#222326;--surface:#2d2f33;--surface2:#383a3f;--text:#f4f1e8;--muted:#b8b5ad;--line:#4b4c50;--gold:#d2b46b;--red:#d94a57;--navy:#7898ba}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font:16px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+button,a{-webkit-tap-highlight-color:transparent}button{font:inherit}
+.topbar{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:12px max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left));background:var(--surface);border-bottom:1px solid var(--line)}
+.brand-button{display:flex;align-items:center;gap:12px;min-width:0;border:0;background:transparent;color:var(--text);padding:4px 0;text-align:left;cursor:pointer}
+.burger{width:24px;display:grid;gap:5px;flex:0 0 24px}.burger span{height:2px;width:22px;background:var(--text);border-radius:3px}
+.brand-name{font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.brand-sub{display:block;color:var(--muted);font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+main{width:min(820px,100%);margin:0 auto;padding:28px 18px 48px}
+.eyebrow{font-size:.76rem;font-weight:800;letter-spacing:.15em;text-transform:uppercase;color:var(--red);margin:12px 0}
+h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.08;letter-spacing:-.04em;margin:.5rem 0 1rem}
+.intro{color:var(--muted);margin:0 0 26px}
+.list{display:grid;gap:13px}.tool{display:flex;align-items:center;gap:15px;padding:18px;background:var(--surface);border:1px solid var(--line);border-radius:16px;color:var(--text);text-decoration:none;transition:transform .15s,border-color .15s}
+.tool:hover,.tool:focus-visible{transform:translateY(-2px);border-color:var(--gold);outline:none}
+.symbol{width:46px;height:46px;flex:0 0 46px;border-radius:12px;display:grid;place-items:center;background:var(--surface2);color:var(--navy);font-size:1.35rem}
+.copy{flex:1;min-width:0}.copy strong{display:block;font-size:1.05rem}.copy span{display:block;color:var(--muted);font-size:.9rem;margin-top:3px}.arrow{color:var(--red);font-size:1.3rem}
+footer{margin-top:25px;color:var(--muted);font-size:.82rem}
+.page{display:none}.page.active{display:block}
+.settings-list{display:grid;gap:12px}.setting{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:17px;background:var(--surface);border:1px solid var(--line);border-radius:14px}.setting-copy{min-width:0}.setting-copy strong{display:block}.setting-copy span{display:block;color:var(--muted);font-size:.9rem;margin-top:3px}
+.action{border:1px solid var(--line);background:var(--surface2);color:var(--text);border-radius:10px;padding:10px 14px;font-weight:650;cursor:pointer;white-space:nowrap}.action.primary{background:var(--navy);border-color:var(--navy);color:#fff}.action:focus-visible,.nav-link:focus-visible,.close:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.switch{width:48px;height:28px;position:relative;flex:0 0 48px}.switch input{width:1px;height:1px;opacity:0;position:absolute}.switch span{position:absolute;inset:0;border-radius:30px;background:var(--surface2);border:1px solid var(--line);cursor:pointer}.switch span:before{content:"";position:absolute;width:20px;height:20px;left:3px;top:3px;border-radius:50%;background:var(--muted);transition:transform .18s}.switch input:checked+span{background:var(--navy)}.switch input:checked+span:before{transform:translateX(20px);background:white}
+.drawer-backdrop{position:fixed;inset:0;z-index:10;background:#0008;opacity:0;visibility:hidden;transition:opacity .2s}.drawer{position:fixed;z-index:11;inset:0 auto 0 0;width:min(320px,86vw);padding:20px;background:var(--surface);transform:translateX(-102%);transition:transform .22s;box-shadow:8px 0 35px #0002;display:flex;flex-direction:column;gap:8px}.drawer.open{transform:translateX(0)}.drawer-backdrop.open{opacity:1;visibility:visible}.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:6px 0 18px;border-bottom:1px solid var(--line);margin-bottom:8px}.drawer-head strong{font-size:1.05rem}.close{border:0;background:transparent;color:var(--text);font-size:1.5rem;padding:4px 10px;cursor:pointer}.nav-link{display:flex;align-items:center;gap:12px;width:100%;padding:13px 12px;border:0;border-radius:10px;background:transparent;color:var(--text);text-decoration:none;text-align:left;cursor:pointer}.nav-link:hover,.nav-link.active{background:var(--surface2)}.nav-icon{width:24px;text-align:center;font-size:1.15rem}.drawer-label{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:800;margin:18px 12px 4px}
+.status{font-size:.85rem;color:var(--muted);margin-top:12px;min-height:1.4em}.version{font-size:.82rem;color:var(--muted);margin-top:24px}
+@media(min-width:650px){main{padding-top:38px}.list{grid-template-columns:1fr 1fr}.tool:first-child{grid-column:1/-1}}
+@media(max-width:480px){main{padding:22px 15px 40px}.setting{align-items:flex-start}.setting .action{padding:9px 10px;font-size:.88rem}.tool{padding:15px;gap:12px}}
 </style>
 </head>
-<body><main>
-<div class="brand">Área interna · EBIMOB</div>
+<body>
+<header class="topbar">
+<button class="brand-button" id="openMenu" aria-label="Abrir menu do site" aria-expanded="false">
+<span class="burger" aria-hidden="true"><span></span><span></span></span>
+<span class="brand-name">Central de Ferramentas<span class="brand-sub">Área interna · EBIMOB</span></span>
+</button>
+</header>
+<div class="drawer-backdrop" id="backdrop"></div>
+<aside class="drawer" id="drawer" aria-label="Menu principal" aria-hidden="true">
+<div class="drawer-head"><strong>Central de Ferramentas</strong><button class="close" id="closeMenu" aria-label="Fechar menu">×</button></div>
+<button class="nav-link active" data-page="home"><span class="nav-icon">⌂</span>Início</button>
+<div class="drawer-label">Sistemas</div>
+<a class="nav-link" href="https://bancoimob-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="nav-icon">▦</span>BancoImob <span style="margin-left:auto">↗</span></a>
+<a class="nav-link" href="https://feedback-maker-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="nav-icon">▤</span>Feedback Maker <span style="margin-left:auto">↗</span></a>
+<a class="nav-link" href="https://contrato-generator-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="nav-icon">✎</span>EBIMOB Contrato Generator <span style="margin-left:auto">↗</span></a>
+<div class="drawer-label">Preferências</div>
+<button class="nav-link" data-page="settings"><span class="nav-icon">⚙</span>Configurações</button>
+</aside>
+<main>
+<section class="page active" id="page-home">
 <div class="eyebrow">Central de Ferramentas</div>
 <h1>Suas ferramentas de trabalho.</h1>
 <p class="intro">Acesse rapidamente os sistemas internos.</p>
 <section class="list" aria-label="Ferramentas">
 <a class="tool" href="https://bancoimob-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="symbol" aria-hidden="true">⌂</span><span class="copy"><strong>BancoImob</strong><span>Base e administração de imóveis</span></span><span class="arrow" aria-hidden="true">↗</span></a>
 <a class="tool" href="https://feedback-maker-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="symbol" aria-hidden="true">▤</span><span class="copy"><strong>Feedback Maker</strong><span>Geração de feedbacks de imóveis</span></span><span class="arrow" aria-hidden="true">↗</span></a>
-<a class="tool" href="https://contrato-generator-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="symbol" aria-hidden="true">✎</span><span class="copy"><strong>Contrato Generator</strong><span>Geração de contratos</span></span><span class="arrow" aria-hidden="true">↗</span></a>
-</section><footer>Ferramentas internas · RE/MAX Soul</footer></main>
-<script>(function(){const key='remax-unified-theme',root=document.documentElement;let theme='light';try{theme=localStorage.getItem(key)||'light'}catch(e){}const b=document.createElement('button');b.type='button';b.id='themeToggle';b.className='theme-toggle';b.title='Alternar entre modo claro e escuro';function apply(t){root.dataset.theme=t;b.textContent=t==='dark'?'☀ Modo claro':'☾ Modo escuro';b.setAttribute('aria-pressed',String(t==='dark'));b.setAttribute('aria-label',t==='dark'?'Ativar modo claro':'Ativar modo escuro');const m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#222326':'#f6f5f1'}b.addEventListener('click',()=>{theme=root.dataset.theme==='dark'?'light':'dark';apply(theme);try{localStorage.setItem(key,theme)}catch(e){}});apply(theme);document.body.appendChild(b)})();</script>
-</body></html>
+<a class="tool" href="https://contrato-generator-bronca.vercel.app/" target="_blank" rel="noopener noreferrer"><span class="symbol" aria-hidden="true">✎</span><span class="copy"><strong>EBIMOB Contrato Generator</strong><span>Geração de contratos e documentos</span></span><span class="arrow" aria-hidden="true">↗</span></a>
+</section>
+<footer>Ferramentas internas · RE/MAX Soul</footer>
+</section>
+<section class="page" id="page-settings">
+<div class="eyebrow">Preferências</div><h1>Configurações</h1><p class="intro">Ajuste a Central por aqui. Novas opções serão organizadas nesta página.</p>
+<div class="settings-list">
+<div class="setting"><div class="setting-copy"><strong>Modo escuro</strong><span>Altera a aparência e salva sua preferência neste aparelho.</span></div><label class="switch" aria-label="Ativar modo escuro"><input id="themeSwitch" type="checkbox"><span></span></label></div>
+<div class="setting"><div class="setting-copy"><strong>Instalar / baixar aplicativo</strong><span>Adicione a Central à tela inicial para abrir como um aplicativo.</span></div><button class="action primary" id="installButton">↓ Instalar</button></div>
+<div class="setting"><div class="setting-copy"><strong>Atualizar aplicativo</strong><span>Verifica se existe uma versão mais recente da Central.</span></div><button class="action" id="updateButton">Verificar</button></div>
+<div class="setting"><div class="setting-copy"><strong>Uso offline</strong><span>A página da Central pode abrir sem internet após ser carregada. Os sistemas externos ainda precisam de conexão.</span></div><span aria-hidden="true">ⓘ</span></div>
+</div>
+<p class="status" id="statusMessage" role="status" aria-live="polite"></p>
+<div class="version">Central de Ferramentas · EBIMOB / RE/MAX Soul</div>
+</section>
+</main>
+<script>
+(function(){
+const root=document.documentElement,themeKey='remax-unified-theme',drawer=document.getElementById('drawer'),backdrop=document.getElementById('backdrop'),openButton=document.getElementById('openMenu'),themeSwitch=document.getElementById('themeSwitch'),status=document.getElementById('statusMessage');
+let deferredPrompt=null;
+function setTheme(value){root.dataset.theme=value;themeSwitch.checked=value==='dark';try{localStorage.setItem(themeKey,value)}catch(e){}const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=value==='dark'?'#222326':'#f6f5f1'}
+let initialTheme='light';try{initialTheme=localStorage.getItem(themeKey)||'light'}catch(e){}setTheme(initialTheme);
+function menu(open){drawer.classList.toggle('open',open);backdrop.classList.toggle('open',open);drawer.setAttribute('aria-hidden',String(!open));openButton.setAttribute('aria-expanded',String(open));document.body.style.overflow=open?'hidden':''}
+function showPage(name){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id==='page-'+name));document.querySelectorAll('[data-page]').forEach(b=>b.classList.toggle('active',b.dataset.page===name));history.replaceState(null,'',name==='settings'?'#configuracoes':'#inicio');menu(false);window.scrollTo({top:0,behavior:'smooth'});if(name==='settings')status.textContent=''}
+openButton.addEventListener('click',()=>menu(true));document.getElementById('closeMenu').addEventListener('click',()=>menu(false));backdrop.addEventListener('click',()=>menu(false));document.addEventListener('keydown',e=>{if(e.key==='Escape')menu(false)});
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+themeSwitch.addEventListener('change',()=>setTheme(themeSwitch.checked?'dark':'light'));
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredPrompt=e;document.getElementById('installButton').textContent='↓ Instalar'});
+document.getElementById('installButton').addEventListener('click',async()=>{if(deferredPrompt){deferredPrompt.prompt();const choice=await deferredPrompt.userChoice;status.textContent=choice.outcome==='accepted'?'Instalação iniciada.':'Instalação cancelada.';deferredPrompt=null;return}if(window.matchMedia('(display-mode: standalone)').matches){status.textContent='A Central já está instalada neste aparelho.';return}status.textContent='No Chrome: abra o menu ⋮ do navegador e escolha “Instalar app” ou “Adicionar à tela inicial”.';});
+document.getElementById('updateButton').addEventListener('click',async()=>{status.textContent='Verificando atualizações…';try{if('serviceWorker'in navigator){const reg=await navigator.serviceWorker.getRegistration();if(reg){await reg.update();if(reg.waiting){reg.waiting.postMessage({type:'SKIP_WAITING'});status.textContent='Atualização aplicada. Recarregando…';setTimeout(()=>location.reload(),500);return}}}status.textContent='Verificação concluída. Se uma atualização foi publicada, recarregue a página.'}catch(e){status.textContent='Não foi possível verificar agora. Confira sua conexão e tente novamente.'}});
+if(location.hash==='#configuracoes')showPage('settings');
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+})();
+</script>
+</body>
+</html>
