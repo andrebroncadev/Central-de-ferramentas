@@ -1,0 +1,19 @@
+{
+  "name": "Central de Ferramentas · EBIMOB",
+  "short_name": "Central EBIMOB",
+  "description": "Central de ferramentas internas da EBIMOB e RE/MAX Soul.",
+  "lang": "pt-BR",
+  "start_url": "./#inicio",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f5f1",
+  "theme_color": "#f6f5f1",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
